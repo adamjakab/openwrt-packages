@@ -1,73 +1,73 @@
-if PACKAGE_squid
+if PACKAGE_squid-full
 
 	comment "Basic features"
 
-	config SQUID_enable-ipv6
+	config SQUID_full_enable-ipv6
 		bool "Enable support for IP version 6"
 		default y
 
-	config SQUID_enable-http-violations
+    config SQUID_full_enable-http-violations
         bool "Allow HTTP protocol violation."
         default y
 
-    config SQUID_enable-x-accelerator-vary
+    config SQUID_full_enable-x-accelerator-vary
         bool "Enable support for the X-Accelerator-Vary HTTP header."
         default n
 
 
-    comment "Optional functionality support"
+	comment "Optional functionality support"
 
-    config SQUID_enable-ssl-crtd
+    config SQUID_full_enable-ssl-crtd
         bool "Enable dynamic SSL certificate generation"
-        depends on !SQUID_use-gnutls
+        depends on !SQUID_full_use-gnutls
         default y
 
-    config SQUID_enable-icmp
+    config SQUID_full_enable-icmp
         bool "Enable ICMP pinging and Network Measurement"
         default n
 
-    config SQUID_enable-snmp
+    config SQUID_full_enable-snmp
         bool "Enable SNMP monitoring support"
         default n
 
-    config SQUID_enable-ecap
+    config SQUID_full_enable-ecap
         bool "Enable ECAP support (needs libecap support)"
         default n
 
-    config SQUID_enable-icap-client
+    config SQUID_full_enable-icap-client
         bool "Enable ICAP client support"
         default y
 
 
-    comment "Authentication schemes"
+	comment "Authentication schemes"
 
-	config SQUID_auth-basic
-		bool "Enable the Basic authentication scheme"
-		default n
+    config SQUID_full_auth-basic
+        bool "Enable the Basic authentication scheme"
+        default y
 
-	config SQUID_auth-digest
-		bool "Enable the Digest authentication scheme"
-		default n
+    config SQUID_full_auth-digest
+        bool "Enable the Digest authentication scheme"
+        default n
 
-	config SQUID_auth-negotiate
-		bool "Enable the Negotiate authentication scheme"
-		default n
+    config SQUID_full_auth-negotiate
+        bool "Enable the Negotiate authentication scheme"
+        default n
 
-	config SQUID_auth-ntlm
-		bool "Enable the NTLM authentication scheme"
-		default n
+    config SQUID_full_auth-ntlm
+        bool "Enable the NTLM authentication scheme"
+        default n
 
 
 	comment "Optional libraries"
 
 	choice
 		prompt "Choose SSL Library"
-		default SQUID_use-openssl
+		default SQUID_full_use-openssl
 
-		config SQUID_use-openssl
+		config SQUID_full_use-openssl
 		bool "Use OpenSSL (default)"
 
-		config SQUID_use-gnutls
+		config SQUID_full_use-gnutls
 		bool "Use GnuTLS (experimental, see help)"
 		help
 			Use GnuTLS in place of OpenSSL for the core features of receiving
@@ -88,19 +88,19 @@ if PACKAGE_squid
 			Strings instead of the OpenSSL options when using GnuTLS.
 	endchoice
 
-	config SQUID_with-libcap
+	config SQUID_full_with-libcap
 		bool "Use libcap - Linux capabilities library"
-		default n
+		default y
 
-	config SQUID_with-nettle
+	config SQUID_full_with-nettle
 		bool "Use nettle - GNU crypto library"
-		default n
+		default y
 
-	config SQUID_with-expat
+	config SQUID_full_with-expat
 		bool "Use expat - XML parsing library"
 		default n
 
-	config SQUID_with-libxml2
+	config SQUID_full_with-libxml2
 		bool "Use libxml2 - Gnome XML library"
 		default n
 
